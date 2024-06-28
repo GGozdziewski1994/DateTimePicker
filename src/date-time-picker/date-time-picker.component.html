@@ -1,0 +1,46 @@
+@if (labelTemplate() && !isFloatingLabel()) {
+  <div class="input-label-above">
+    {{ labelTemplate() }}
+    @if (isRequiredValidator()) {
+      <span>{{ isRequired() }}</span>
+    }
+  </div>
+}
+
+<mat-form-field [class]="customClass()" appearance="outline">
+  @if (isFloatingLabel()) {
+    <mat-label>{{ labelTemplate() }} {{ isRequired() }}</mat-label>
+  }
+
+  <input
+    [formControl]="pickerControl"
+    [placeholder]="placeholder()"
+    [readonly]="isReadonly()"
+    (focusin)="updateValidators()"
+    (keydown.enter)="openDialog()"
+    matInput
+    type="text" />
+
+  <button class="opacity-60" [disabled]="pickerControl.disabled" (click)="openDialog()" matSuffix mat-icon-button>
+    <mat-icon>{{ iconPicker() }}</mat-icon>
+  </button>
+
+  @if (pickerControl.invalid) {
+    <mat-error
+      class="[&>*:not(:first-child)]:hidden"
+      [ngClass]="{
+        visible: pickerControl.invalid,
+        invisible: !pickerControl.invalid,
+      }">
+      @if (pickerControl.hasError('required')) {
+        <span>To pole jest wymagane</span>
+      }
+      @if (pickerControl.hasError('timeFromIsGreaterThanTimeTo')) {
+        <span>Czas "od" jest większy od czasu "do"</span>
+      }
+      @if (pickerControl.hasError('timeOutOfRange')) {
+        <span>{{ timeRangeError }}</span>
+      }
+    </mat-error>
+  }
+</mat-form-field>

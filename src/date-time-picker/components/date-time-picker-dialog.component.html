@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>{{ dialogConfig.title }}</h2>
+
+<mat-dialog-content>
+  @switch (dialogConfig.data.pickerType) {
+    @case ('dateTime') {
+      <ng-container *ngTemplateOutlet="date" />
+
+      <ng-container *ngTemplateOutlet="time" />
+    }
+    @case ('date') {
+      <ng-container *ngTemplateOutlet="date" />
+    }
+    @case ('time') {
+      <ng-container *ngTemplateOutlet="time" />
+    }
+    @case ('dateTimeRange') {
+      <ng-container *ngTemplateOutlet="dateRange" />
+
+      <ng-container *ngTemplateOutlet="timeRange" />
+    }
+    @case ('dateRange') {
+      <ng-container *ngTemplateOutlet="dateRange" />
+    }
+    @case ('timeRange') {
+      <ng-container *ngTemplateOutlet="timeRange" />
+    }
+  }
+
+  <ng-template #date>
+    <mat-calendar
+      class="min-h-[300px]"
+      [maxDate]="dialogConfig.data.maxDate"
+      [minDate]="dialogConfig.data.minDate"
+      [selected]="dateControl.value"
+      (selectedChange)="dateControl.setValue($event)" />
+  </ng-template>
+
+  <ng-template #dateRange>
+    <mat-calendar
+      class="min-h-[300px]"
+      [maxDate]="dialogConfig.data.maxDate"
+      [minDate]="dialogConfig.data.minDate"
+      [selected]="rangeDateControl.value"
+      (selectedChange)="onSelectedRangeChange($event)" />
+  </ng-template>
+
+  <ng-template #timeRange>
+    <div class="flex gap-2 pt-1 max-w-64">
+      <mat-form-field appearance="outline">
+        <mat-label>Czas od</mat-label>
+        <input [formControl]="rangeTimeFromControl" matInput type="time" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Czas do</mat-label>
+        <input [formControl]="rangeTimeToControl" matInput type="time" />
+      </mat-form-field>
+    </div>
+  </ng-template>
+
+  <ng-template #time>
+    <mat-form-field class="w-full" appearance="outline">
+      <input [formControl]="timeControl" matInput type="time" />
+    </mat-form-field>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-flat-button [disabled]="confirmButtonIsDisabled" (click)="onConfirm()">Potwierdź</button>
+
+  <button mat-stroked-button (click)="dialogRef.close(false)">Anuluj</button>
+</mat-dialog-actions>

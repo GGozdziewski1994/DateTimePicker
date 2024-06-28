@@ -6,22 +6,53 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Picker Component
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The component offers a versatile and intuitive date and time selection tool. The component supports six variants
 
-## Running end-to-end tests
+* date
+* dateTime
+* time
+* timeRange
+* dateRange
+* dateTimeRange
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Key features
 
-## Further help
+* `Integration with Angular Material`: Uses the calendar from Angular Material for date selection.
+* `HTML Time Input`: Uses a standard HTML time element to select a time.
+* `ControlValueAccessor`: Implements the ControlValueAccessor interface so it works seamlessly with ReactiveForms in Angular.
+* `Future-proof`: Designed to remain compatible with future Angular updates by using standard Angular Material components and HTML elements.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Usage
+
+```
+<date-time-picker
+  [formControl]="dateTimeRangePickerControl"
+  customClass="w-full"
+  pickerType="dateTimeRange"
+  label="Date time range picker" />
+ ```
+
+### Inputs
+
+* pickerType: `dateTime | time | dateTimeRange | dateRange | date | timeRange`
+* customClass: `string`
+* isLabelFloating: `boolean`
+* isLabelAbove: `boolean`
+* isReadonly: `boolean`
+* placeholder: `string`
+* label: `string`
+* maxDate: `Date | null`
+* minDate: `Date | null`
+* dialogTitle: `string | null`
+
+### Summary 
+
+This Date Time Picker component is a flexible and robust solution for selecting dates and times in Angular applications. By using Angular Material and standard HTML elements, it ensures compatibility and ease of use even as Angular evolves. Its implementation as a `ControlValueAccessor` makes it integrate naturally with `ReactiveForms`
+
+
