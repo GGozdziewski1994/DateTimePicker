@@ -56,3 +56,5 @@ The component offers a versatile and intuitive date and time selection tool. The
 This Date Time Picker component is a flexible and robust solution for selecting dates and times in Angular applications. By using Angular Material and standard HTML elements, it ensures compatibility and ease of use even as Angular evolves. Its implementation as a `ControlValueAccessor` makes it integrate naturally with `ReactiveForms`
 
 
+![image](https://github.com/GGozdziewski1994/DateTimePicker/assets/89773456/2d72e981-9d6b-4cf5-a4e5-d9f3b1bf0f5e)
+
